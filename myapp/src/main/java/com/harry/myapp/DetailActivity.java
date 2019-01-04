@@ -20,7 +20,7 @@ public class DetailActivity extends BaseActivity {
         findViewById(R.id.imgbg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(RESULT_OK);
+                setActivityResult(RESULT_OK);
                 finish();
             }
         });

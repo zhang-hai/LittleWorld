@@ -1,6 +1,7 @@
 package org.harry.littleworld.api;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -24,4 +25,6 @@ public interface LittleWorldInterface {
     void onBackPressed();
     void finish();
     boolean onTouchEvent(MotionEvent event);
+    void onActivityResult(int requestCode, int resultCode, Intent data);
+    void setActivityResult(int resultCode);
 }

@@ -31,10 +31,11 @@ public class MainActivity extends BaseActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == CODE && resultCode == RESULT_OK){
             showToast(MainActivity.this,"我返回自插件的DetailActivity类");
         }
     }
+
 }

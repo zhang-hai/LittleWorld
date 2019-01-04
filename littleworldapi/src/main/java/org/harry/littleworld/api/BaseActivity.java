@@ -106,6 +106,19 @@ public class BaseActivity extends Activity implements LittleWorldInterface {
         }
     }
 
+    public void setActivityResult(int resultCode){
+        if (that == null){
+            setResult(resultCode);
+        }else {
+            that.setResult(resultCode);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     @Override
     public void setContentView(int layoutResID) {
         if (that == null){

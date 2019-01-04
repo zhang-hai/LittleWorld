@@ -75,4 +75,13 @@ public class ProxyActivity extends Activity {
         intent1.putExtra("className",classNameFromApk);
         super.startActivityForResult(intent1, requestCode);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(littleWorldInterface == null){
+            super.onActivityResult(requestCode, resultCode, data);
+        }else {
+            littleWorldInterface.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }

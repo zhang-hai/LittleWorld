@@ -19,4 +19,21 @@
         android:layout_marginTop="20dp"
         android:text="英语"/>
 
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_myapp"
+        android:layout_marginTop="20dp"
+        android:text="播放音乐"/>
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_myapp"
+        app:layout_constraintLeft_toRightOf="@id/btn_myapp"
+        android:layout_marginTop="20dp"
+        android:text="停止音乐"/>
+
 </android.support.constraint.ConstraintLayout>

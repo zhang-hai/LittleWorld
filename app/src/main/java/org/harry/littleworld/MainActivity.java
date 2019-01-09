@@ -2,17 +2,15 @@ package org.harry.littleworld;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import org.harry.littleworld.api.LittleWorldConstantApi;
+import org.harry.littleworld.appproxy.ProxyActivity;
 import org.harry.littleworld.manager.PluginManager;
 import org.harry.littleworld.permission.PermissionUtil;
 
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 PluginManager.getInstance().loadApk(getApplicationContext(),file.getAbsolutePath());
 
                 Intent intent = new Intent(MainActivity.this,ProxyActivity.class);
-                intent.putExtra("className",PluginManager.getInstance().getEntryActivityName());
+                intent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,PluginManager.getInstance().getEntryActivityName());
                 startActivity(intent);
             }
         });

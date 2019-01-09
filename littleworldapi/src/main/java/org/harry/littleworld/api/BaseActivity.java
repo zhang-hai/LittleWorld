@@ -1,13 +1,17 @@
 package org.harry.littleworld.api;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,7 +21,7 @@ import android.widget.Toast;
  * Created by zhanghai on 2019/1/3.
  * function：BaseActivity
  */
-public class BaseActivity extends Activity implements LittleWorldInterface {
+public class BaseActivity extends Activity implements ILittleWorldActivity {
 
     protected  Activity that = null;
 
@@ -167,6 +171,15 @@ public class BaseActivity extends Activity implements LittleWorldInterface {
     }
 
     @Override
+    public Resources getResources() {
+        if(that == null){
+            return super.getResources();
+        }else {
+            return that.getResources();
+        }
+    }
+
+    @Override
     public LayoutInflater getLayoutInflater() {
         if(that == null){
             return super.getLayoutInflater();
@@ -181,7 +194,7 @@ public class BaseActivity extends Activity implements LittleWorldInterface {
             super.startActivity(intent);
         }else {
             Intent newIntent = new Intent();
-            newIntent.putExtra("className",intent.getComponent().getClassName());
+            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,intent.getComponent().getClassName());
             that.startActivity(newIntent);
         }
     }
@@ -192,8 +205,73 @@ public class BaseActivity extends Activity implements LittleWorldInterface {
             super.startActivityForResult(intent, requestCode);
         }else {
             Intent newIntent = new Intent();
-            newIntent.putExtra("className",intent.getComponent().getClassName());
+            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,intent.getComponent().getClassName());
             that.startActivityForResult(newIntent,requestCode);
+        }
+    }
+
+    @Override
+    public ComponentName startService(Intent service) {
+        if(that == null){
+            return super.startService(service);
+        }else {
+            Intent newIntent = new Intent();
+            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,service.getComponent().getClassName());
+            return that.startService(newIntent);
+        }
+    }
+
+    @Override
+    public boolean stopService(Intent name) {
+        if(that == null){
+            return super.stopService(name);
+        }else {
+            Intent newIntent = new Intent();
+            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,name.getComponent().getClassName());
+            return that.stopService(newIntent);
+        }
+    }
+
+    @Override
+    public boolean bindService(Intent service, ServiceConnection conn, int flags) {
+        if(that == null){
+            return super.bindService(service, conn, flags);
+        }else {
+            return that.bindService(service, conn, flags);
+        }
+    }
+
+    @Override
+    public void unbindService(ServiceConnection conn) {
+        if(that == null){
+            super.unbindService(conn);
+        }else {
+            that.unbindService(conn);
+        }
+    }
+
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        if(that == null){
+            return super.registerReceiver(receiver, filter);
+        }else {
+            return that.registerReceiver(receiver, filter);
+        }
+    }
+
+    @Override
+    public void unregisterReceiver(BroadcastReceiver receiver) {
+        if(that == null){
+            super.unregisterReceiver(receiver);
+        }else {
+            that.unregisterReceiver(receiver);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(that == null){
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

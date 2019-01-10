@@ -3,14 +3,19 @@ package org.harry.littleworld.api;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.LoaderManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -21,12 +26,12 @@ import android.widget.Toast;
  * Created by zhanghai on 2019/1/3.
  * function：BaseActivity
  */
-public class BaseActivity extends Activity implements ILittleWorldActivity {
+public class BaseActivity extends FragmentActivity implements ILittleWorldActivity {
 
-    protected  Activity that = null;
+    protected  FragmentActivity that = null;
 
     @Override
-    public void attach(Activity activity) {
+    public void attach(FragmentActivity activity) {
         this.that = activity;
     }
 
@@ -47,6 +52,13 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         if(that == null){
             super.onCreate(savedInstanceState);
+        }
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        if(that == null){
+            super.onPostCreate(savedInstanceState);
         }
     }
 
@@ -161,6 +173,7 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
         }
     }
 
+
     @Override
     public ClassLoader getClassLoader() {
         if(that == null){
@@ -193,9 +206,7 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
         if (that == null){
             super.startActivity(intent);
         }else {
-            Intent newIntent = new Intent();
-            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,intent.getComponent().getClassName());
-            that.startActivity(newIntent);
+            that.startActivity(intent);
         }
     }
 
@@ -204,9 +215,7 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
         if(that == null){
             super.startActivityForResult(intent, requestCode);
         }else {
-            Intent newIntent = new Intent();
-            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,intent.getComponent().getClassName());
-            that.startActivityForResult(newIntent,requestCode);
+            that.startActivityForResult(intent,requestCode);
         }
     }
 
@@ -215,9 +224,7 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
         if(that == null){
             return super.startService(service);
         }else {
-            Intent newIntent = new Intent();
-            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,service.getComponent().getClassName());
-            return that.startService(newIntent);
+            return that.startService(service);
         }
     }
 
@@ -226,9 +233,7 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
         if(that == null){
             return super.stopService(name);
         }else {
-            Intent newIntent = new Intent();
-            newIntent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,name.getComponent().getClassName());
-            return that.stopService(newIntent);
+            return that.stopService(name);
         }
     }
 
@@ -272,6 +277,45 @@ public class BaseActivity extends Activity implements ILittleWorldActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(that == null){
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
+    public FragmentManager getSupportFragmentManager() {
+        if(that == null){
+            return super.getSupportFragmentManager();
+        }else {
+            return that.getSupportFragmentManager();
+        }
+    }
+
+
+
+
+    @Override
+    public AssetManager getAssets() {
+        if(that == null){
+            return super.getAssets();
+        }else {
+            return that.getAssets();
+        }
+    }
+
+    @Override
+    public Context getApplicationContext() {
+        if(that == null){
+            return super.getApplicationContext();
+        }else {
+            return that.getApplicationContext();
+        }
+    }
+
+    @Override
+    public LoaderManager getSupportLoaderManager() {
+        if(that == null){
+            return super.getSupportLoaderManager();
+        }else {
+            return that.getSupportLoaderManager();
         }
     }
 }

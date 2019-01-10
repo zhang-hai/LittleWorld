@@ -49,4 +49,5 @@ public abstract class BaseService extends Service implements ILittleWorldService
             return that.getResources();
         }
     }
+
 }

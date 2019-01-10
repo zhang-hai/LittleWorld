@@ -60,9 +60,8 @@ public class ProxyService extends Service {
      * @param clsName
      */
     private void loadClassFromName(String clsName) {
-        Class activityClass = null;
         try {
-            activityClass = getClassLoader().loadClass(clsName);
+            Class activityClass = getClassLoader().loadClass(clsName);
             Constructor constructor = activityClass.getConstructor(new Class[]{});
             Object instance = constructor.newInstance(new Object[]{});
             if (instance instanceof ILittleWorldService) {

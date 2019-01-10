@@ -1,14 +1,16 @@
 package org.harry.littleworld.appproxy;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 
-import org.harry.littleworld.api.LittleWorldConstantApi;
 import org.harry.littleworld.api.ILittleWorldActivity;
+import org.harry.littleworld.api.LittleWorldConstantApi;
 import org.harry.littleworld.manager.PluginManager;
 
 import java.lang.reflect.Constructor;
@@ -18,7 +20,7 @@ import java.lang.reflect.InvocationTargetException;
  * Created by zhanghai on 2019/1/3.
  * function：
  */
-public class ProxyActivity extends Activity {
+public class ProxyActivity extends FragmentActivity {
     private String className;
 
     private ILittleWorldActivity littleWorldInterface = null;
@@ -73,9 +75,13 @@ public class ProxyActivity extends Activity {
         return PluginManager.getInstance().getResources();
     }
 
+
     @Override
     public void startActivity(Intent intent) {
         String classNameFromApk = intent.getStringExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME);
+        if(TextUtils.isEmpty(classNameFromApk)){
+            classNameFromApk = intent.getComponent().getClassName();
+        }
         Intent intent1 = new Intent(this,ProxyActivity.class);
         intent1.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,classNameFromApk);
         super.startActivity(intent1);
@@ -84,6 +90,9 @@ public class ProxyActivity extends Activity {
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         String classNameFromApk = intent.getStringExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME);
+        if(TextUtils.isEmpty(classNameFromApk)){
+            classNameFromApk = intent.getComponent().getClassName();
+        }
         Intent intent1 = new Intent(this,ProxyActivity.class);
         intent1.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,classNameFromApk);
         super.startActivityForResult(intent1, requestCode);
@@ -101,6 +110,9 @@ public class ProxyActivity extends Activity {
     @Override
     public ComponentName startService(Intent service) {
         String clsName = service.getStringExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME);
+        if(TextUtils.isEmpty(clsName)){
+            clsName = service.getComponent().getClassName();
+        }
         Intent intent = new Intent(this,ProxyService.class);
         intent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,clsName);
         return super.startService(intent);
@@ -109,6 +121,9 @@ public class ProxyActivity extends Activity {
     @Override
     public boolean stopService(Intent name) {
         String clsName = name.getStringExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME);
+        if(TextUtils.isEmpty(clsName)){
+            clsName = name.getComponent().getClassName();
+        }
         Intent intent = new Intent(this,ProxyService.class);
         intent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,clsName);
         return super.stopService(intent);

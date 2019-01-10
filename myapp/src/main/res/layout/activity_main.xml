@@ -3,37 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView  android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@mipmap/ic_launcher"/>
-    <Button
-        android:id="@+id/btn_myapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img"
-        android:layout_marginTop="20dp"
-        android:text="英语"/>
 
-    <Button
-        android:id="@+id/btn_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_myapp"
-        android:layout_marginTop="20dp"
-        android:text="播放音乐"/>
-    <Button
-        android:id="@+id/btn_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_myapp"
-        app:layout_constraintLeft_toRightOf="@id/btn_myapp"
-        android:layout_marginTop="20dp"
-        android:text="停止音乐"/>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="我是一个来自插件的Activity提示文字信息"/>
+
+    <fragment
+        android:id="@+id/left_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.harry.myapp.fragments.HomeFragment"/>
 
 </android.support.constraint.ConstraintLayout>

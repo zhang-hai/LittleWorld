@@ -1,21 +1,18 @@
 package org.harry.littleworld.api;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
-import android.view.View;
 
 /**
  * Created by zhanghai on 2019/1/3.
  * function：定义一个公共的生命周期接口
  */
 public interface ILittleWorldActivity {
-    void attach(Activity activity);
+    void attach(FragmentActivity activity);
     void onCreate(@Nullable Bundle savedInstanceState);
     void onResume();
     void onStart();

@@ -44,7 +44,7 @@ public class MyService extends BaseService implements MediaPlayer.OnPreparedList
     public void onDestroy() {
         super.onDestroy();
         release();
-        System.out.println("MyService --->> onDestroy.");
+        System.out.println("MyService --->> onDestroy(停止播放).");
     }
 
 
@@ -53,6 +53,7 @@ public class MyService extends BaseService implements MediaPlayer.OnPreparedList
             mediaPlayer = new MediaPlayer();
         }
         try {
+            mediaPlayer.reset();
             String filepath = String.format(Locale.CHINESE,"%s/%s",Environment.getExternalStorageDirectory().getPath(),"Honor.mp3");
             mediaPlayer.setDataSource(filepath);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);

@@ -6,9 +6,11 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.harry.myapp.fragments.HomeFragment;
 import com.harry.myapp.permission.PermissionUtil;
 import com.harry.myapp.service.MyService;
 
@@ -19,44 +21,30 @@ import org.harry.littleworld.api.BaseActivity;
  * function：
  */
 public class MainActivity extends BaseActivity {
-    private final int CODE = 1;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.btn_myapp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getCurrentContext(MainActivity.this),DetailActivity.class);
-                startActivityForResult(intent,CODE);
-            }
-        });
 
-        findViewById(R.id.btn_play).setOnClickListener(new View.OnClickListener() {
+
+        hasPermission();
+
+        findViewById(R.id.tv_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startService(new Intent(getCurrentContext(MainActivity.this),MyService.class));
             }
         });
-
-        findViewById(R.id.btn_stop).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopService(new Intent(getCurrentContext(MainActivity.this),MyService.class));
-            }
-        });
-
-        hasPermission();
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CODE && resultCode == RESULT_OK){
-            showToast(MainActivity.this,"我返回自插件的DetailActivity类");
-        }
+        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == CODE && resultCode == RESULT_OK){
+//            showToast(MainActivity.this,"我返回自插件的DetailActivity类");
+//        }
     }
 
     @Override

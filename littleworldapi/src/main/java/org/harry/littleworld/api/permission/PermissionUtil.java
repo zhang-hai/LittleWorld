@@ -1,4 +1,4 @@
-package com.harry.myapp.permission;
+package org.harry.littleworld.api.permission;
 
 import android.Manifest;
 import android.app.Activity;

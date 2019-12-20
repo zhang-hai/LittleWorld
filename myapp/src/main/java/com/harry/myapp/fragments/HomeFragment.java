@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.harry.myapp.DetailActivity;
-import com.harry.myapp.MainActivity;
 import com.harry.myapp.R;
 import com.harry.myapp.service.MyService;
 
 import org.harry.littleworld.api.BaseFragment;
+import org.harry.littleworld.api.LittleWorldConstantApi;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -43,9 +43,7 @@ public class HomeFragment extends BaseFragment {
         view.findViewById(R.id.btn_myapp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),DetailActivity.class);
-                startActivityForResult(intent,CODE);
-//                startActivity(intent);
+                startActivityForResult("com.harry.myapp.DetailActivity",CODE);
             }
         });
 

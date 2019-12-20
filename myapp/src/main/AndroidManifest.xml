@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DetailActivity" android:launchMode="standard"/>
+        <activity android:name=".DetailActivity"/>
 
         <service android:name=".service.MyService"/>
     </application>

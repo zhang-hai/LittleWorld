@@ -1,20 +1,16 @@
 package com.harry.myapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
-import android.widget.Toast;
 
-import com.harry.myapp.fragments.HomeFragment;
-import com.harry.myapp.permission.PermissionUtil;
 import com.harry.myapp.service.MyService;
 
 import org.harry.littleworld.api.BaseActivity;
+import org.harry.littleworld.api.permission.PermissionUtil;
 
 /**
  * Created by zhanghai on 2019/1/3.
@@ -74,7 +70,6 @@ public class MainActivity extends BaseActivity {
                             errorCount++;
                         }
                     }
-
                 }
                 break;
         }

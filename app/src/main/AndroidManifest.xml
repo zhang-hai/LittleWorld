@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".appproxy.ProxyActivity"
+            android:name=".api.appproxy.ProxyActivity"
             android:launchMode="standard" />
 
-        <service android:name=".appproxy.ProxyService" />
+        <service android:name=".api.appproxy.ProxyService" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

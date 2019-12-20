@@ -1,17 +1,16 @@
-package org.harry.littleworld.appproxy;
+package org.harry.littleworld.api.appproxy;
 
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 
 import org.harry.littleworld.api.ILittleWorldActivity;
 import org.harry.littleworld.api.LittleWorldConstantApi;
-import org.harry.littleworld.manager.PluginManager;
+import org.harry.littleworld.api.manager.PluginManager;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

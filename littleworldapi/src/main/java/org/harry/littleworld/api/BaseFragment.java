@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.harry.littleworld.api.appproxy.ProxyActivity;
 
 /**
  * Created by zhanghai on 2019/1/9.
@@ -15,6 +18,7 @@ import android.view.ViewGroup;
 public class BaseFragment extends Fragment implements ILittleWorldFragment {
 
     protected Fragment fragment;
+
 
     @Override
     public void attach(Fragment fragment) {
@@ -75,6 +79,13 @@ public class BaseFragment extends Fragment implements ILittleWorldFragment {
             fragment.startActivityForResult(intent,requestCode);
         }
     }
+
+    public void startActivityForResult(String className,int requestCode){
+        Intent intent = new Intent(getActivity(), ProxyActivity.class);
+        intent.putExtra(LittleWorldConstantApi.ExtraKey.API_KEY_CLASS_NAME,className);
+        startActivityForResult(intent,requestCode);
+    }
+
 
     @Override
     public void startActivity(Intent intent) {

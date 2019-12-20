@@ -1,4 +1,4 @@
-package org.harry.littleworld.appproxy;
+package org.harry.littleworld.api.appproxy;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 
 import org.harry.littleworld.api.ILittleWorldService;
 import org.harry.littleworld.api.LittleWorldConstantApi;
-import org.harry.littleworld.manager.PluginManager;
+import org.harry.littleworld.api.manager.PluginManager;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
